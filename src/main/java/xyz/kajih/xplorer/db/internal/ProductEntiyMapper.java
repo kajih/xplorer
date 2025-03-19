@@ -11,7 +11,7 @@ public interface ProductEntiyMapper {
 
     ProductEntiyMapper MAPPER = Mappers.getMapper(ProductEntiyMapper.class);
 
-    @Mapping( target = "key", ignore = true )
+    @Mapping( target = "id", ignore = true )
     ProductEntity toEntity(ProductDTO s);
 
     @InheritInverseConfiguration

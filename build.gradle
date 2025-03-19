@@ -53,6 +53,8 @@ dependencies {
 
 	implementation("org.mapstruct:mapstruct:1.6.3")
 	annotationProcessor("org.mapstruct:mapstruct-processor:1.6.3")
+
+	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.18.3'
 }
 
 dependencyManagement {

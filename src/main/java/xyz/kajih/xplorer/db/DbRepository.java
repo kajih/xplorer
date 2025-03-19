@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface DbRepository extends CrudRepository<ProductEntity, Long> {
-    List<ProductEntity> findByLastName(String lastName);
+    List<ProductEntity> findAllByName(String iname);
     ProductEntity findById(long id);
 }
