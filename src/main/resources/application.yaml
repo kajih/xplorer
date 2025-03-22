@@ -1,15 +1,33 @@
 spring:
-    application:
-        name: xplorer
-    h2:
-        console.enabled: true
-    datasource:
-        url: jdbc:h2:mem:dcbapp
-        driverClassName: org.h2.Driver
-        username: sa
-        password: password
-    jpa:
-        spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+
+  threads:
+    virtual.enabled: true
+
+  application:
+    name: xplorer
+  h2:
+    console.enabled: true
+  datasource:
+    url: jdbc:h2:mem:dcbapp
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+
+  devtools:
+    restart:
+      enabled: true
+      exclude: "static/**,public/**"
+
 server:
-    port:
-        8082
+  port:
+    8082
+ibm:
+  mq:
+    queueManager: QM1
+    channel: DEV.ADMIN.SVRCONN
+    connName: naglfar.lan(1414)
+    user: admin
+    password: passw0rd
+

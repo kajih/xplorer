@@ -1,6 +1,8 @@
 package xyz.kajih.xplorer.journal;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.StandardCharsets;
@@ -74,5 +76,15 @@ public class Journal {
         if (channel != null && channel.isOpen()) {
             channel.close();
         }
+    }
+
+    /**
+     * Reader buffered reader.
+     *
+     * @return the buffered reader
+     * @throws IOException the io exception
+     */
+    public BufferedReader reader() throws IOException {
+        return Files.newBufferedReader(journalPath);
     }
 }

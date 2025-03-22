@@ -30,31 +30,47 @@ ext {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
-	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	runtimeOnly 'com.h2database:h2'
+	// Spring Boot DevTools for development-time enhancements (e.g., hot reload)
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// Spring Boot configuration processor for enhanced auto-completion in IDEs
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+	// Spring Boot dependencies
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'			// JDBC support
+//	implementation 'org.springframework.boot:spring-boot-starter-data-rest'		// REST data support
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'		// JPA support
+	implementation 'org.springframework.boot:spring-boot-starter-web'			// Web support (REST, controllers)
+	implementation("org.springframework.boot:spring-boot-starter-webflux")
+	implementation 'org.springframework.modulith:spring-modulith-starter-core'	// Modulith framework for modular applications
+
+	// HTMX integration for Spring Boot with Thymeleaf
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'		// Thymeleaf templating engine
 	implementation 'io.github.wimdeblauwe:htmx-spring-boot-thymeleaf:4.0.1'
 
-	implementation 'org.springframework.modulith:spring-modulith-starter-core'
+	// H2 database for in-memory database usage
+	runtimeOnly 'com.h2database:h2'
 
+	implementation 'com.ibm.mq:mq-jms-spring-boot-starter:3.4.3'
+
+	// Lombok for code generation (e.g., getters, setters)
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'org.springframework.modulith:spring-modulith-starter-test'
-	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	// Jackson for XML processing
+	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.18.3'
 
+	// MapStruct for compiling-time mapping between objects (DTOs, entities, etc.)
 	implementation("org.mapstruct:mapstruct:1.6.3")
 	annotationProcessor("org.mapstruct:mapstruct-processor:1.6.3")
 
-	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.18.3'
+	// Testing dependencies
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'  // Spring Boot testing support
+	testImplementation 'org.springframework.modulith:spring-modulith-starter-test'  // Modulith testing support
+	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'  // REST Docs for documenting REST APIs
+	testImplementation("io.projectreactor:reactor-test")
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'  // JUnit 5 test engine for running tests
+
 }
 
 dependencyManagement {
