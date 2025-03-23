@@ -38,7 +38,6 @@ dependencies {
 
 	// Spring Boot dependencies
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'			// JDBC support
-//	implementation 'org.springframework.boot:spring-boot-starter-data-rest'		// REST data support
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'		// JPA support
 	implementation 'org.springframework.boot:spring-boot-starter-web'			// Web support (REST, controllers)
 	implementation("org.springframework.boot:spring-boot-starter-webflux")

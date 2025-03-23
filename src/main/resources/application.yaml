@@ -20,6 +20,9 @@ spring:
       enabled: true
       exclude: "static/**,public/**"
 
+journal:
+  filename: Journal.log
+
 server:
   port:
     8082
@@ -27,7 +30,12 @@ ibm:
   mq:
     queueManager: QM1
     channel: DEV.ADMIN.SVRCONN
+    queue: DEV.QUEUE.1
     connName: naglfar.lan(1414)
     user: admin
     password: passw0rd
 
+
+logging:
+  level:
+    org.springframework: DEBUG

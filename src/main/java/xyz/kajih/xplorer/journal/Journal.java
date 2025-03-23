@@ -1,8 +1,10 @@
 package xyz.kajih.xplorer.journal;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.charset.StandardCharsets;
@@ -14,17 +16,20 @@ import java.nio.file.StandardOpenOption;
 /**
  * Journal.
  */
+@Service
 public class Journal {
+
+    private final String filename;
     private final Path journalPath;
     private FileChannel channel;
 
     /**
      * Instantiera ny Journal
      *
-     * @param filename journal sökväg
      * @throws IOException the io exception
      */
-    public Journal(String filename) throws IOException {
+    public Journal(@Value("${journal.filename}") String filename) throws IOException {
+        this.filename = filename;
         this.journalPath = Paths.get(filename);
         this.channel = FileChannel.open(journalPath, StandardOpenOption.CREATE, StandardOpenOption.WRITE, StandardOpenOption.APPEND);
     }

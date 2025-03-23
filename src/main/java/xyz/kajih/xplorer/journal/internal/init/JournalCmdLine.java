@@ -8,21 +8,26 @@ import xyz.kajih.xplorer.journal.Journal;
 
 @Component
 public class JournalCmdLine implements CommandLineRunner {
+
     private static final Logger LOG = LoggerFactory.getLogger(JournalCmdLine.class);
+    private final Journal journal;
+
+    public JournalCmdLine(Journal journal) {
+        this.journal = journal;
+    }
 
     @Override
     public void run(String... args) throws Exception {
-        Journal j = new Journal("Journal");
-        LOG.info("Journal  exists {}", j.exists() ? "YES" : "NO");
-        try (var buff = j.reader()) {
+        LOG.info("Journal  exists {}", journal.exists() ? "YES" : "NO");
+        try (var buff = journal.reader()) {
             String line;
             while ((line = buff.readLine()) != null) {
                 LOG.info("Processing Journal [{}]", line);
             }
         }
-        j.append("FOOOO");
-        j.append("BAR");
-        j.append("BAZ");
-        j.append("NEW");
+        journal.append("FOOOO");
+        journal.append("BAR");
+        journal.append("BAZ");
+        journal.append("NEW");
     }
 }
