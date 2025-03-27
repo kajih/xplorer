@@ -8,14 +8,15 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 
 @Configuration
-@Profile("mq")
-public class MQConfig {
+@Profile("dev")
+public class ArtemisConfig {
     @Bean
-    public DefaultJmsListenerContainerFactory jmsListenerContainerFactory(ConnectionFactory connectionFactory) {
+    public DefaultJmsListenerContainerFactory jmsListenerContainerFactory(ConnectionFactory artemisConnectionFactory) {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
-        factory.setConnectionFactory(connectionFactory);
+        factory.setConnectionFactory(artemisConnectionFactory);
         factory.setConcurrency("10"); // Process up to 10 messages concurrently
         factory.setSessionAcknowledgeMode(AcknowledgeMode.CLIENT.getMode()); // CLIENT_ACKNOWLEDGE mode
         return factory;
     }
 }
+

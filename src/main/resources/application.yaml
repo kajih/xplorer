@@ -1,8 +1,6 @@
 spring:
-
   threads:
     virtual.enabled: true
-
   application:
     name: xplorer
   h2:
@@ -14,27 +12,19 @@ spring:
     password: password
   jpa:
     spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
-
   devtools:
     restart:
       enabled: true
       exclude: "static/**,public/**"
-
 journal:
   filename: Journal.log
+
+messaging:
+  queue: DEV.QUEUE.1
 
 server:
   port:
     8082
-ibm:
-  mq:
-    queueManager: QM1
-    channel: DEV.ADMIN.SVRCONN
-    queue: DEV.QUEUE.1
-    connName: naglfar.lan(1414)
-    user: admin
-    password: passw0rd
-
 
 logging:
   level:

@@ -1,15 +1,14 @@
 package xyz.kajih.xplorer.journal.internal.init;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import xyz.kajih.xplorer.journal.Journal;
 
+@Slf4j
 @Component
 public class JournalCmdLine implements CommandLineRunner {
 
-    private static final Logger LOG = LoggerFactory.getLogger(JournalCmdLine.class);
     private final Journal journal;
 
     public JournalCmdLine(Journal journal) {
@@ -18,11 +17,11 @@ public class JournalCmdLine implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        LOG.info("Journal  exists {}", journal.exists() ? "YES" : "NO");
+        log.info("Journal  exists {}", journal.exists() ? "YES" : "NO");
         try (var buff = journal.reader()) {
             String line;
             while ((line = buff.readLine()) != null) {
-                LOG.info("Processing Journal [{}]", line);
+                log.info("Processing Journal [{}]", line);
             }
         }
         journal.append("FOOOO");

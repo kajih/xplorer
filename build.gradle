@@ -50,7 +50,9 @@ dependencies {
 	// H2 database for in-memory database usage
 	runtimeOnly 'com.h2database:h2'
 
-	implementation 'com.ibm.mq:mq-jms-spring-boot-starter:3.4.3'
+//	implementation 'com.ibm.mq:mq-jms-spring-boot-starter:3.4.3'
+	implementation 'org.springframework.boot:spring-boot-starter-artemis'
+	implementation 'org.apache.activemq:artemis-jms-server:2.40.0'
 
 	// Lombok for code generation (e.g., getters, setters)
 	compileOnly 'org.projectlombok:lombok'
@@ -78,15 +80,14 @@ dependencyManagement {
 	}
 }
 
+test {
+	useJUnitPlatform()
+}
+
 tasks.withType(JavaCompile) {
 	options.compilerArgs = [
 			'-Amapstruct.suppressGeneratorTimestamp=true'
 	]
-}
-
-tasks.named('test') {
-	outputs.dir snippetsDir
-	useJUnitPlatform()
 }
 
 tasks.named('asciidoctor') {

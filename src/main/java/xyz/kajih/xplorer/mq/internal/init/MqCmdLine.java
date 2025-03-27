@@ -1,20 +1,17 @@
 package xyz.kajih.xplorer.mq.internal.init;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.core.JmsTemplate;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import xyz.kajih.xplorer.journal.Journal;
 
-@Async
+@Slf4j
 @EnableJms
 @Component
 public class MqCmdLine implements CommandLineRunner {
 
-    private static final Logger LOG = LoggerFactory.getLogger(MqCmdLine.class);
     private final JmsTemplate jmsTemplate;
     private final Journal journal;
 
@@ -30,9 +27,10 @@ public class MqCmdLine implements CommandLineRunner {
         try (var buff = journal.reader()) {
             String line;
             while ((line = buff.readLine()) != null) {
-                LOG.info("Queueing Journal [{}]", line);
+                log.info("Queueing Journal [{}]", line);
                 jmsTemplate.convertAndSend("DEV.QUEUE.1", line);
             }
         }
+        log.info("Queueing done! --------------------------------------");
     }
 }
