@@ -11,11 +11,11 @@ spring:
     username: sa
     password: password
   jpa:
-    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
   devtools:
     restart:
       enabled: true
       exclude: "static/**,public/**"
+
 journal:
   filename: Journal.log
 

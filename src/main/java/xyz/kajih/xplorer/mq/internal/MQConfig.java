@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 
 @Configuration
-@Profile("mq")
+@Profile("!dev")
 public class MQConfig {
     @Bean
     public DefaultJmsListenerContainerFactory jmsListenerContainerFactory(ConnectionFactory connectionFactory) {

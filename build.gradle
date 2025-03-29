@@ -1,6 +1,6 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.4.4-SNAPSHOT'
+	id 'org.springframework.boot' version '3.4.4'
 	id 'io.spring.dependency-management' version '1.1.7'
 	id 'org.asciidoctor.jvm.convert' version '3.3.2'
 }
@@ -22,7 +22,7 @@ configurations {
 
 repositories {
 	mavenCentral()
-	maven { url 'https://repo.spring.io/snapshot' }
+	maven { url='https://repo.spring.io/snapshot' }
 }
 
 ext {
@@ -84,11 +84,15 @@ test {
 	useJUnitPlatform()
 }
 
+/*
 tasks.withType(JavaCompile) {
 	options.compilerArgs = [
-			'-Amapstruct.suppressGeneratorTimestamp=true'
+			'-Amapstruct.suppressGeneratorTimestamp=true',
+			'-parameters'
 	]
 }
+
+ */
 
 tasks.named('asciidoctor') {
 	inputs.dir snippetsDir

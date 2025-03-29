@@ -1,13 +1,12 @@
 spring:
   jms:
-    provider: artemis
+    listener:
+      auto-startup: true  # Automatically start JMS listeners
   artemis:
     mode: embedded  # Enables embedded ArtemisMQ
     embedded:
       enabled: true
       queues: ${messaging.queue} # Define an embedded queue
       persistent: false  # Set to true if persistence is needed
-      security-enabled: false  # Disable security for local development
 
-    listener:
-      auto-startup: true  # Automatically start JMS listeners
+debug: true

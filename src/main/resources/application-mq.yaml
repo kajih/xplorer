@@ -1,6 +1,3 @@
-spring:
-  jms:
-    provider: ibm
 ibm:
   mq:
     queueManager: QM1
@@ -9,3 +6,4 @@ ibm:
     connName: naglfar.lan(1414)
     user: admin
     password: passw0rd
+
