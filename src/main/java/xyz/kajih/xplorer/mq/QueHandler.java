@@ -4,11 +4,11 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Mq {
+public class QueHandler {
 
     private final JmsTemplate jmsTemplate;
 
-    public Mq(JmsTemplate jmsTemplate) {
+    public QueHandler(JmsTemplate jmsTemplate) {
         this.jmsTemplate = jmsTemplate;
     }
 

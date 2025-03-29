@@ -1,0 +1,12 @@
+### Swagger UI
+GET http://localhost:8082/swagger-ui/index.html
+
+### Swagger Json
+GET http://localhost:8082/v3/api-docs
+
+### Swagger Yaml
+GET http://localhost:8082/v3/api-docs.yaml
+
+
+###
+GET http://localhost:8082/api/users/{{id}}

@@ -1,7 +1,6 @@
 package xyz.kajih.xplorer.notification;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
@@ -11,10 +10,9 @@ import xyz.kajih.xplorer.notification.internal.NotificationType;
 /**
  * The type Notification service.
  */
+@Slf4j
 @Service
 public class NotificationService {
-
-    private static final Logger LOG = LoggerFactory.getLogger(NotificationService.class);
     private final ApplicationEventPublisher applicationEventPublisher;
 
     /**
@@ -35,7 +33,7 @@ public class NotificationService {
 
         applicationEventPublisher.publishEvent(notification);
 
-        LOG.info("Received notification by module dependency for product {} in date {} by {}.",
+        log.info("Received notification by module dependency for product {} in date {} by {}.",
                 notification.getProductName(),
                 notification.getDate(),
                 notification.getFormat());
@@ -50,7 +48,7 @@ public class NotificationService {
     @EventListener
     public void notificationEvent(NotificationDTO event) {
         Notification notification = toEntity(event);
-        LOG.info("Received notification by event for product {} in date {} by {}.",
+        log.info("Received notification by event for product {} in date {} by {}.",
                 notification.date(),
                 notification.notificationType(),
                 notification.name());
@@ -61,7 +59,7 @@ public class NotificationService {
         try {
             format = NotificationType.valueOf(event.getFormat());
         } catch (IllegalArgumentException e) {
-            LOG.error("Unknown notification format for product {} - {}", event.getProductName(), event.getFormat());
+            log.error("Unknown notification format for product {} - {}", event.getProductName(), event.getFormat());
         }
         return new Notification(event.getDate(), format, event.getProductName());
     }

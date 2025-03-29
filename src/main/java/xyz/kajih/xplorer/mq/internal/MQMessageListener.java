@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MQMessageListener {
 
-    @JmsListener(destination = "DEV.QUEUE.1", containerFactory = "jmsListenerContainerFactory")
+    @JmsListener(destination = "${messaging.queue}", containerFactory = "jmsListenerContainerFactory")
     public void receiveMessage(Message message) {
         try {
             if (message instanceof TextMessage textMessage) {
