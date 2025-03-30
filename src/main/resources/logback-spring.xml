@@ -1,0 +1,48 @@
+<configuration>
+
+    <!-- Console Appender (default) -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Separate File Appender for 'com.myapp.service' -->
+    <appender name="MQ_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/mq-broker.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/service-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Separate File Appender for 'com.myapp.repository' -->
+    <appender name="JOURNAL_LOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/journal.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/repository-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Loggers for specific packages -->
+    <logger name="xyz.kajih.xplorer.mq" level="INFO" additivity="false">
+        <appender-ref ref="MQ_LOG" />
+    </logger>
+
+    <logger name="xyz.kajih.xplorer.journal" level="INFO" additivity="false">
+        <appender-ref ref="JOURNAL_LOG" />
+    </logger>
+
+    <!-- Root logger (default application logging) -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+</configuration>

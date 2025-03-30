@@ -4,6 +4,7 @@ spring:
       auto-startup: true  # Automatically start JMS listeners
   artemis:
     mode: embedded  # Enables embedded ArtemisMQ
+    broker-url: vm://0
     embedded:
       enabled: true
       queues: ${messaging.queue} # Define an embedded queue

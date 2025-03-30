@@ -52,6 +52,7 @@ dependencies {
 	implementation 'io.github.wimdeblauwe:htmx-spring-boot-thymeleaf:4.0.1'
 
 	// H2 database for in-memory database usage
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	runtimeOnly 'com.h2database:h2'
 
 	// MQ Queue
