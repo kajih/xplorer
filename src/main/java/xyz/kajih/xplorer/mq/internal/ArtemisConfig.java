@@ -1,6 +1,6 @@
 package xyz.kajih.xplorer.mq.internal;
 
-import jakarta.jms.ConnectionFactory;
+import org.apache.activemq.artemis.jms.client.ActiveMQConnectionFactory;
 import org.springframework.boot.autoconfigure.jms.AcknowledgeMode;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,8 +10,9 @@ import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 @Configuration
 @Profile("dev")
 public class ArtemisConfig {
+
     @Bean
-    public DefaultJmsListenerContainerFactory jmsListenerContainerFactory(ConnectionFactory artemisConnectionFactory) {
+    public DefaultJmsListenerContainerFactory jmsListenerContainerFactory(ActiveMQConnectionFactory artemisConnectionFactory) {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
         factory.setConnectionFactory(artemisConnectionFactory);
         factory.setConcurrency("10"); // Process up to 10 messages concurrently

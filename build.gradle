@@ -54,7 +54,8 @@ dependencies {
 	// H2 database for in-memory database usage
 	runtimeOnly 'com.h2database:h2'
 
-//	implementation 'com.ibm.mq:mq-jms-spring-boot-starter:3.4.3'
+	// MQ Queue
+	implementation 'com.ibm.mq:mq-jms-spring-boot-starter:3.4.3'
 	implementation 'org.springframework.boot:spring-boot-starter-artemis'
 	implementation 'org.apache.activemq:artemis-jms-server:2.40.0'
 
