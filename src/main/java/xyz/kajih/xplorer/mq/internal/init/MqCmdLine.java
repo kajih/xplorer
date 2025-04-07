@@ -2,12 +2,14 @@ package xyz.kajih.xplorer.mq.internal.init;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;
 import xyz.kajih.xplorer.journal.Journal;
 
 @Slf4j
+@Profile("MQ")
 @EnableJms
 @Component
 public class MqCmdLine implements CommandLineRunner {

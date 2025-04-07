@@ -1,8 +1,11 @@
 plugins {
 	id 'java'
+	id 'maven-publish'
 	id 'org.springframework.boot' version '3.4.4'
 	id 'io.spring.dependency-management' version '1.1.7'
 	id 'org.asciidoctor.jvm.convert' version '3.3.2'
+	id 'org.springdoc.openapi-gradle-plugin' version '1.9.0'
+	id 'com.github.ben-manes.versions' version '0.52.0'
 }
 
 group = 'xyz.kajih'
@@ -86,9 +89,55 @@ dependencyManagement {
 	}
 }
 
+
+openApi {
+	apiDocsUrl.set('http://localhost:8082/v3/api-docs.yaml')
+	outputDir.set(layout.buildDirectory.dir('openapi'))
+	outputFileName.set("xplorer.yaml")
+	waitTimeInSeconds.set(10)
+}
+
+/*
+tasks.register('zipOpenApi', Zip) {
+	dependsOn 'openapi'
+
+	def openapiDir = layout.buildDirectory.dir('openapi')
+
+	from(openapiDir)
+	include 'openapi.yaml'
+
+	destinationDirectory.set(openapiDir)
+	archiveFileName.set('openapi-artifact.zip')
+}
+
+publishing {
+	publications {
+		openapiZip(MavenPublication) {
+			def zipTask = tasks.named("zipOpenApi").get()
+
+			artifact(zipTask.archiveFile) {
+				extension = 'zip'
+			}
+
+			groupId = 'com.example.openapi'
+			artifactId = 'openapi-definition'
+			version = '1.0.0'
+		}
+	}
+
+	repositories {
+		mavenLocal()
+	}
+}
+
+ */
+
+/*
 test {
 	useJUnitPlatform()
 }
+
+ */
 
 /*
 tasks.withType(JavaCompile) {

@@ -4,11 +4,13 @@ import jakarta.jms.JMSException;
 import jakarta.jms.Message;
 import jakarta.jms.TextMessage;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
+@Profile("MQ")
 public class MQMessageListener {
 
     @JmsListener(destination = "${messaging.queue}", containerFactory = "jmsListenerContainerFactory")

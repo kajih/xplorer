@@ -1,9 +1,5 @@
 package xyz.kajih.xplorer.mq.internal;
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
-
-/*
 import com.ibm.mq.jakarta.jms.MQConnectionFactory;
 import com.ibm.mq.spring.boot.MQConfigurationProperties;
 import com.ibm.msg.client.jakarta.wmq.WMQConstants;
@@ -16,12 +12,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
-*/
+
 @Configuration
-@Profile("!dev")
+@Profile("MQ")
 public class MQConfig {
 
-    /*
     @Bean
     @ConfigurationProperties(prefix = "ibm.mq")
     public MQConfigurationProperties mqConfigProperties() {
@@ -48,6 +43,4 @@ public class MQConfig {
         factory.setSessionAcknowledgeMode(AcknowledgeMode.CLIENT.getMode()); // CLIENT_ACKNOWLEDGE mode
         return factory;
     }
-
-     */
 }

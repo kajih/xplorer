@@ -36,3 +36,4 @@ out/
 ### VS Code ###
 .vscode/
 Journal.log
+logs/mq-broker.log
